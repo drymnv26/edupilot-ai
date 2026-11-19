@@ -1,0 +1,74 @@
+import Link from "next/link";
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+import SinavFormu from "@/components/SinavFormu";
+
+type Sinav = {
+  id: string;
+  title: string;
+  pass_score: number;
+  is_published: boolean;
+  created_at: string;
+};
+
+export default async function SinavlarSayfasi() {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    redirect("/giris");
+  }
+
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  const isAdmin = profile?.role === "company_admin";
+
+  const { data } = await supabase
+    .from("exams")
+    .select("id, title, pass_score, is_published, created_at")
+    .order("created_at", { ascending: false });
+
+  const exams: Sinav[] = data ?? [];
+
+  return (
+    <main className="mx-auto max-w-xl space-y-6 p-6">
+      <div>
+        <Link href="/panel" className="text-sm text-blue-600 underline">
+          ← Panele dön
+        </Link>
+        <h1 className="mt-2 text-2xl font-bold text-gray-900">Sınavlar</h1>
+      </div>
+
+      {isAdmin && <SinavFormu />}
+
+      <div className="space-y-3">
+        {exams.length === 0 && (
+          <p className="text-gray-600">Henüz sınav yok.</p>
+        )}
+        {exams.map((s) => (
+          <div key={s.id} className="rounded-xl bg-white p-4 shadow">
+                        <Link
+              href={`/panel/sinavlar/${s.id}`}
+              className="font-semibold text-blue-600 underline"
+            >
+              {s.title}
+            </Link>
+            <p className="text-sm text-gray-600">
+              Geçme puanı: {s.pass_score}
+            </p>
+            <p className="mt-1 text-xs text-gray-500">
+              {s.is_published ? "Yayında" : "Taslak"}
+            </p>
+          </div>
+        ))}
+      </div>
+    </main>
+  );
+}
