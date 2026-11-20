@@ -2,9 +2,11 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import CikisButonu from "@/components/CikisButonu";
+import { abonelikAktifMi } from "@/lib/abonelik";
 
 export default async function PanelSayfasi() {
   const supabase = await createClient();
+  const aktif = await abonelikAktifMi(supabase);
 
   const {
     data: { user },
@@ -28,6 +30,12 @@ export default async function PanelSayfasi() {
   return (
     <main className="mx-auto max-w-xl p-6">
       <h1 className="text-2xl font-bold text-gray-900">Panel</h1>
+      {!aktif && (
+        <div className="mt-4 rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+          Aboneli&#287;iniz aktif de&#287;il. E&#287;itimler ve s&#305;navlar a&ccedil;&#305;lm&#305;yor.
+          L&uuml;tfen platform y&ouml;neticisiyle ileti&#351;ime ge&ccedil;in.
+        </div>
+      )}
       <div className="mt-4 space-y-2 rounded-xl bg-white p-6 text-gray-900 shadow">
         <p>
           <strong>Firma:</strong> {company?.name ?? "-"}

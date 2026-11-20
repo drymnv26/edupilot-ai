@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import EgitimFormu from "@/components/EgitimFormu";
+import { abonelikAktifMi } from "@/lib/abonelik";
 import SilButonu from "@/components/SilButonu";
 
 type Egitim = {
@@ -30,6 +31,7 @@ export default async function EgitimlerSayfasi() {
     .maybeSingle();
 
   const isAdmin = profile?.role === "company_admin";
+  const aktif = await abonelikAktifMi(supabase);
 
   const { data } = await supabase
     .from("trainings")
@@ -47,7 +49,14 @@ export default async function EgitimlerSayfasi() {
         <h1 className="mt-2 text-2xl font-bold text-gray-900">Eğitimler</h1>
       </div>
 
-      {isAdmin && <EgitimFormu />}
+      {!aktif && (
+        <p className="rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+          Aboneli&#287;iniz aktif de&#287;il. Bu sayfa kapal&#305;. L&uuml;tfen platform
+          y&ouml;neticisiyle ileti&#351;ime ge&ccedil;in.
+        </p>
+      )}
+
+      {isAdmin && aktif && <EgitimFormu />}
 
       <div className="space-y-3">
         {trainings.length === 0 && (

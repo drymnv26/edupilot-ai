@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import SinavFormu from "@/components/SinavFormu";
+import { abonelikAktifMi } from "@/lib/abonelik";
 import SilButonu from "@/components/SilButonu";
 
 type Sinav = {
@@ -30,6 +31,7 @@ export default async function SinavlarSayfasi() {
     .maybeSingle();
 
   const isAdmin = profile?.role === "company_admin";
+  const aktif = await abonelikAktifMi(supabase);
 
   const { data } = await supabase
     .from("exams")
@@ -47,7 +49,14 @@ export default async function SinavlarSayfasi() {
         <h1 className="mt-2 text-2xl font-bold text-gray-900">Sınavlar</h1>
       </div>
 
-      {isAdmin && <SinavFormu />}
+      {!aktif && (
+        <p className="rounded-xl border border-red-300 bg-red-50 p-4 text-sm text-red-800">
+          Aboneli&#287;iniz aktif de&#287;il. Bu sayfa kapal&#305;. L&uuml;tfen platform
+          y&ouml;neticisiyle ileti&#351;ime ge&ccedil;in.
+        </p>
+      )}
+
+      {isAdmin && aktif && <SinavFormu />}
 
       <div className="space-y-3">
         {exams.length === 0 && (
