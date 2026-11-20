@@ -48,6 +48,10 @@ export async function personelEkle(input: {
   // 2) Yönetici doğrulandı: kullanıcıyı gizli anahtarla oluştur
   const admin = createAdminClient();
 
+  const { count: personelSayisi } = await admin.from("profiles").select("id", { count: "exact", head: true }).eq("company_id", me.company_id).eq("role", "employee");
+  if ((personelSayisi ?? 0) >= 10) {
+    return { ok: false, error: "Paketinizde en fazla 10 personel eklenebilir. Daha fazlas\u0131 i\u00e7in destek@guzellikedu.com adresine yaz\u0131n." };
+  }
   const { data: created, error: createError } =
     await admin.auth.admin.createUser({
       email,
