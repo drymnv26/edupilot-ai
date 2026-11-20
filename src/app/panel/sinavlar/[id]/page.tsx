@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SilButonu from "@/components/SilButonu";
+import SoruDuzenle from "@/components/SoruDuzenle";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import SoruFormu from "@/components/SoruFormu";
@@ -107,7 +108,7 @@ export default async function SinavDetaySayfasi({
                     </li>
                   ))}
                 </ul>
-                <div className="mt-3"><SilButonu id={q.id} tablo="questions" /></div>
+                <div className="mt-3 flex flex-wrap items-start gap-2"><SoruDuzenle id={q.id} text={q.question_text} options={q.options} correctIndex={answerMap.get(q.id) ?? 0} /><SilButonu id={q.id} tablo="questions" /></div>
               </div>
             ))}
           </div>
