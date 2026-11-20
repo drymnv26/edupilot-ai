@@ -55,7 +55,7 @@ export default async function EgitimlerSayfasi() {
         )}
         {trainings.map((t) => (
           <div key={t.id} className="rounded-xl bg-white p-4 shadow">
-            <p className="font-semibold text-gray-900">{t.title}</p>
+            <Link href={`/panel/egitimler/${t.id}`} className="font-semibold text-blue-600 underline">{t.title}</Link>
             {t.description && (
               <p className="text-sm text-gray-600">{t.description}</p>
             )}
