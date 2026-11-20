@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import PersonelFormu from "@/components/PersonelFormu";
+import SifreYenile from "@/components/SifreYenile";
 
 type Kisi = {
   id: string;
@@ -56,6 +57,7 @@ export default async function PersonelSayfasi() {
             <p className="mt-1 text-sm text-mist">
               {p.role === "company_admin" ? "Yönetici" : "Personel"}
             </p>
+          {p.role !== "company_admin" && <SifreYenile userId={p.id} />}
           </div>
         ))}
       </div>

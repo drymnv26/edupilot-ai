@@ -79,3 +79,56 @@ export async function personelEkle(input: {
   revalidatePath("/panel/personel");
   return { ok: true };
 }
+export async function personelSifreYenile(input: {
+  userId: string;
+  password: string;
+}): Promise<Sonuc> {
+  const userId = String(input?.userId ?? "");
+  const password = String(input?.password ?? "");
+
+  if (password.length < 8) {
+    return { ok: false, error: "\u015eifre en az 8 karakter olmal\u0131." };
+  }
+
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return { ok: false, error: "Giri\u015f yapmal\u0131s\u0131n\u0131z." };
+  }
+
+  const { data: me } = await supabase
+    .from("profiles")
+    .select("company_id, role")
+    .eq("id", user.id)
+    .maybeSingle();
+
+  if (!me || me.role !== "company_admin") {
+    return {
+      ok: false,
+      error: "Bu i\u015flem i\u00e7in firma y\u00f6neticisi olmal\u0131s\u0131n\u0131z.",
+    };
+  }
+
+  const admin = createAdminClient();
+
+  const { data: hedef } = await admin
+    .from("profiles")
+    .select("company_id, role")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (!hedef || hedef.company_id !== me.company_id || hedef.role !== "employee") {
+    return { ok: false, error: "Bu personel bulunamad\u0131." };
+  }
+
+  const { error } = await admin.auth.admin.updateUserById(userId, { password });
+
+  if (error) {
+    return { ok: false, error: error.message };
+  }
+
+  return { ok: true };
+}
