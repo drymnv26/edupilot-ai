@@ -14,7 +14,7 @@ const baslik = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "EduPilot AI",
+  title: "G\u00fczellik Akademisi",
   description:
     "Personel e\u011fitimlerini ve s\u0131navlar\u0131n\u0131 tek yerden y\u00f6netin.",
 };

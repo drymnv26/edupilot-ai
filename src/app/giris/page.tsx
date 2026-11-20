@@ -24,7 +24,7 @@ export default function GirisSayfasi() {
     });
 
     if (signInError) {
-      setError("E-posta veya şifre hatalı.");
+      setError("E-posta veya \u015fifre hatal\u0131.");
       setLoading(false);
       return;
     }
@@ -32,51 +32,67 @@ export default function GirisSayfasi() {
     router.push("/panel");
     router.refresh();
   }
+  const alan =
+    "mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none";
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gray-50 p-4">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-md space-y-4 rounded-xl bg-white p-6 shadow"
-      >
-        <h1 className="text-2xl font-bold text-gray-900">
-          EduPilot AI - Giriş
-        </h1>
-
-        <input
-          className="w-full rounded border border-gray-300 p-2 text-gray-900"
-          type="email"
-          placeholder="E-posta"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="w-full rounded border border-gray-300 p-2 text-gray-900"
-          type="password"
-          placeholder="Şifre"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        {error && <p className="text-sm text-red-600">{error}</p>}
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full rounded bg-blue-600 p-2 font-semibold text-white disabled:opacity-50"
+    <main className="flex min-h-screen items-center justify-center bg-ink p-4 text-ivory">
+      <div className="w-full max-w-md">
+        <Link href="/" className="font-display text-2xl">
+          G&uuml;zellik Akademisi
+        </Link>
+        <form
+          onSubmit={handleSubmit}
+          className="mt-6 space-y-5 rounded-3xl border border-line bg-surface p-6 sm:p-8"
         >
-          {loading ? "Giriş yapılıyor..." : "Giriş Yap"}
-        </button>
+          <h1 className="font-display text-4xl">Giri&#351; yap</h1>
 
-        <p className="text-center text-sm text-gray-600">
-          Hesabınız yok mu?{" "}
-          <Link href="/kayit" className="text-blue-600 underline">
-            Firma kaydı oluşturun
-          </Link>
-        </p>
-      </form>
+          <label className="block text-sm text-mist">
+            E-posta
+            <input
+              className={alan}
+              type="email"
+              autoComplete="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </label>
+
+          <label className="block text-sm text-mist">
+            &#350;ifre
+            <input
+              className={alan}
+              type="password"
+              autoComplete="current-password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+
+          {error && (
+            <p role="alert" className="text-sm text-red-300">
+              {error}
+            </p>
+          )}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
+          >
+            {loading ? "Giri\u015f yap\u0131l\u0131yor..." : "Giri\u015f yap"}
+          </button>
+
+          <p className="text-center text-sm text-mist">
+            Hesab&#305;n&#305;z yok mu?{" "}
+            <Link href="/kayit" className="text-blush underline underline-offset-4">
+              Firma kayd&#305; olu&#351;turun
+            </Link>
+          </p>
+        </form>
+      </div>
     </main>
   );
 }

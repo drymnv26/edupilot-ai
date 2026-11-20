@@ -5,7 +5,7 @@ export default function AnaSayfa() {
     <div className="min-h-screen bg-ink text-ivory">
       <div className="mx-auto max-w-6xl px-6">
         <header className="flex items-center justify-between py-6">
-          <span className="font-display text-2xl">EduPilot AI</span>
+          <span className="font-display text-2xl">G&uuml;zellik Akademisi</span>
           <nav className="flex items-center gap-5 text-sm">
             <Link href="/giris" className="text-mist transition-colors hover:text-ivory">
               Giri&#351; yap
