@@ -72,63 +72,63 @@ export default async function RaporlarSayfasi() {
   const passRate = total > 0 ? Math.round((passedCount * 100) / total) : 0;
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
+    <main className="min-h-screen bg-ink text-ivory"><div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
       <div>
-        <Link href="/panel" className="text-sm text-blue-600 underline">
+        <Link href="/panel" className="block text-sm text-mist underline underline-offset-4 hover:text-ivory">
           ← Panele dön
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-gray-900">
+        <h1 className="mt-3 font-display text-5xl">
           {isAdmin ? "Sınav Raporları" : "Sonuçlarım"}
         </h1>
       </div>
 
       <div className="grid grid-cols-3 gap-3">
-        <div className="rounded-xl bg-white p-4 text-center shadow">
-          <p className="text-2xl font-bold text-gray-900">{total}</p>
-          <p className="text-xs text-gray-600">Sınav girişi</p>
+        <div className="rounded-2xl border border-line bg-surface p-5 text-center">
+          <p className="font-display text-4xl text-blush">{total}</p>
+          <p className="mt-1 text-xs text-mist">Sınav girişi</p>
         </div>
-        <div className="rounded-xl bg-white p-4 text-center shadow">
-          <p className="text-2xl font-bold text-gray-900">{average}</p>
-          <p className="text-xs text-gray-600">Ortalama puan</p>
+        <div className="rounded-2xl border border-line bg-surface p-5 text-center">
+          <p className="font-display text-4xl text-blush">{average}</p>
+          <p className="mt-1 text-xs text-mist">Ortalama puan</p>
         </div>
-        <div className="rounded-xl bg-white p-4 text-center shadow">
-          <p className="text-2xl font-bold text-gray-900">%{passRate}</p>
-          <p className="text-xs text-gray-600">Geçme oranı</p>
+        <div className="rounded-2xl border border-line bg-surface p-5 text-center">
+          <p className="font-display text-4xl text-blush">%{passRate}</p>
+          <p className="mt-1 text-xs text-mist">Geçme oranı</p>
         </div>
       </div>
 
       <div className="space-y-3">
         {total === 0 && (
-          <p className="text-gray-600">Henüz sınav sonucu yok.</p>
+          <p className="text-mist">Henüz sınav sonucu yok.</p>
         )}
         {attempts.map((a) => (
-          <div key={a.id} className="rounded-xl bg-white p-4 shadow">
+          <div key={a.id} className="rounded-2xl border border-line bg-surface p-5">
             {isAdmin && (
-              <p className="font-semibold text-gray-900">
+              <p className="font-display text-2xl">
                 {personNames.get(a.user_id) ?? "-"}
               </p>
             )}
             <p
               className={
-                isAdmin ? "text-sm text-gray-700" : "font-semibold text-gray-900"
+                isAdmin ? "text-sm text-mist" : "font-display text-2xl"
               }
             >
               {examTitles.get(a.exam_id) ?? "Sınav"}
             </p>
-            <p className="mt-1 text-sm text-gray-800">
+            <p className="mt-2 text-sm text-ivory">
               Puan: <strong>{a.score}</strong> ({a.correct_count}/
               {a.total_count} doğru) ·{" "}
               <span
                 className={
                   a.passed
-                    ? "font-semibold text-green-700"
-                    : "font-semibold text-red-600"
+                    ? "font-semibold text-emerald-300"
+                    : "font-semibold text-red-300"
                 }
               >
                 {a.passed ? "Geçti" : "Kaldı"}
               </span>
             </p>
-            <p className="mt-1 text-xs text-gray-500">
+            <p className="mt-2 text-xs text-mist">
               {new Date(a.created_at).toLocaleString("tr-TR", {
                 timeZone: "Europe/Istanbul",
               })}
@@ -136,9 +136,9 @@ export default async function RaporlarSayfasi() {
           </div>
         ))}
         {total >= 200 && (
-          <p className="text-xs text-gray-500">Son 200 sonuç gösteriliyor.</p>
+          <p className="text-xs text-mist">Son 200 sonuç gösteriliyor.</p>
         )}
       </div>
-    </main>
+    </div></main>
   );
 }

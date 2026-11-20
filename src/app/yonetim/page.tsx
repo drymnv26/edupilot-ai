@@ -45,12 +45,12 @@ export default async function YonetimSayfasi() {
   });
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
+    <main className="min-h-screen bg-ink text-ivory"><div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
       <div>
-        <h1 className="text-2xl font-bold text-gray-900">
+        <h1 className="font-display text-5xl">
           Platform Yönetimi
         </h1>
-        <p className="text-sm text-gray-600">
+        <p className="mt-2 text-sm text-mist">
           {companies.length} firma · Abonelikleri buradan yönetin.
         </p>
       </div>
@@ -59,9 +59,9 @@ export default async function YonetimSayfasi() {
 
       <div className="space-y-4">
         {companies.map((c) => (
-          <div key={c.id} className="rounded-xl bg-white p-4 shadow">
-            <p className="font-semibold text-gray-900">{c.name}</p>
-            <p className="text-xs text-gray-500">
+          <div key={c.id} className="rounded-2xl border border-line bg-surface p-5">
+            <p className="font-display text-2xl">{c.name}</p>
+            <p className="mt-1 text-sm text-mist">
               Kullanıcı sayısı: {userCounts.get(c.id) ?? 0} · Kayıt:{" "}
               {new Date(c.created_at).toLocaleDateString("tr-TR", {
                 timeZone: "Europe/Istanbul",
@@ -82,6 +82,6 @@ export default async function YonetimSayfasi() {
           </div>
         ))}
       </div>
-    </main>
+    </div></main>
   );
 }

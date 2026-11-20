@@ -39,26 +39,26 @@ export default async function PersonelSayfasi() {
   const people: Kisi[] = data ?? [];
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
+    <main className="min-h-screen bg-ink text-ivory"><div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
       <div>
-        <Link href="/panel" className="text-sm text-blue-600 underline">
+        <Link href="/panel" className="block text-sm text-mist underline underline-offset-4 hover:text-ivory">
           ← Panele dön
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-gray-900">Personel</h1>
+        <h1 className="mt-3 font-display text-5xl">Personel</h1>
       </div>
 
       <PersonelFormu />
 
       <div className="space-y-3">
         {people.map((p) => (
-          <div key={p.id} className="rounded-xl bg-white p-4 shadow">
-            <p className="font-semibold text-gray-900">{p.full_name ?? "-"}</p>
-            <p className="text-xs text-gray-500">
+          <div key={p.id} className="rounded-2xl border border-line bg-surface p-5">
+            <p className="font-display text-2xl">{p.full_name ?? "-"}</p>
+            <p className="mt-1 text-sm text-mist">
               {p.role === "company_admin" ? "Yönetici" : "Personel"}
             </p>
           </div>
         ))}
       </div>
-    </main>
+    </div></main>
   );
 }

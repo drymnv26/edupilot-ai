@@ -55,11 +55,11 @@ export default function AbonelikFormu({
   }
 
   return (
-    <div className="mt-3 space-y-2 border-t border-gray-200 pt-3">
-      <label className="block text-sm text-gray-700">
+    <div className="mt-4 space-y-3 border-t border-line pt-4">
+      <label className="block text-sm text-mist">
         Durum
         <select
-          className="mt-1 w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory scheme-dark focus:border-blush focus:outline-none"
           value={currentStatus}
           onChange={(e) => setCurrentStatus(e.target.value)}
         >
@@ -71,24 +71,24 @@ export default function AbonelikFormu({
         </select>
       </label>
 
-      <label className="block text-sm text-gray-700">
+      <label className="block text-sm text-mist">
         Bitiş tarihi (boş bırakırsan süre sınırı olmaz)
         <input
           type="date"
-          className="mt-1 w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory scheme-dark focus:border-blush focus:outline-none"
           value={currentEndsAt}
           onChange={(e) => setCurrentEndsAt(e.target.value)}
         />
       </label>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {success && <p className="text-sm text-green-700">{success}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
+      {success && <p className="text-sm text-emerald-300">{success}</p>}
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <button
           type="button"
           onClick={otuzGunAktif}
-          className="rounded border border-gray-300 px-3 py-2 text-sm text-gray-800"
+          className="rounded-full border border-line px-4 py-2 text-sm text-mist transition-colors hover:border-blush hover:text-ivory"
         >
           Bugünden +30 gün aktif yap
         </button>
@@ -96,7 +96,7 @@ export default function AbonelikFormu({
           type="button"
           onClick={kaydet}
           disabled={loading}
-          className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white disabled:opacity-50"
+          className="rounded-full bg-blush px-5 py-2 text-sm font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
         >
           {loading ? "Kaydediliyor..." : "Kaydet"}
         </button>

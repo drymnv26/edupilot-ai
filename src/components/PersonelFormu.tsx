@@ -35,19 +35,19 @@ export default function PersonelFormu() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3 rounded-xl bg-white p-6 shadow"
+      className="space-y-5 rounded-3xl border border-line bg-surface p-6 sm:p-8"
     >
-      <h2 className="text-lg font-bold text-gray-900">Yeni Personel Ekle</h2>
+      <h2 className="font-display text-3xl">Yeni Personel Ekle</h2>
 
       <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
+        className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory placeholder:text-mist focus:border-blush focus:outline-none"
         placeholder="Ad Soyad"
         value={fullName}
         onChange={(e) => setFullName(e.target.value)}
         required
       />
       <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
+        className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory placeholder:text-mist focus:border-blush focus:outline-none"
         type="email"
         placeholder="E-posta"
         value={email}
@@ -55,7 +55,7 @@ export default function PersonelFormu() {
         required
       />
       <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
+        className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory placeholder:text-mist focus:border-blush focus:outline-none"
         type="text"
         placeholder="Geçici şifre (en az 8 karakter)"
         value={password}
@@ -64,13 +64,13 @@ export default function PersonelFormu() {
         required
       />
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {success && <p className="text-sm text-green-700">{success}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
+      {success && <p className="text-sm text-emerald-300">{success}</p>}
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded bg-blue-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
       >
         {loading ? "Ekleniyor..." : "Personeli Ekle"}
       </button>
