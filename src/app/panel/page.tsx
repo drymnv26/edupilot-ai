@@ -60,7 +60,7 @@ export default async function PanelSayfasi() {
       >
         Sınavlar
       </Link>
-            {profile?.role === "company_admin" && (
+      {profile?.role === "company_admin" && (
         <Link
           href="/panel/personel"
           className="mt-4 ml-2 inline-block rounded bg-blue-600 px-4 py-2 font-semibold text-white"
@@ -68,7 +68,7 @@ export default async function PanelSayfasi() {
           Personel
         </Link>
       )}
-                  <Link
+      <Link
         href="/panel/raporlar"
         className="mt-4 ml-2 inline-block rounded bg-blue-600 px-4 py-2 font-semibold text-white"
       >

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import EgitimFormu from "@/components/EgitimFormu";
+import SilButonu from "@/components/SilButonu";
 
 type Egitim = {
   id: string;
@@ -61,6 +62,7 @@ export default async function EgitimlerSayfasi() {
             <p className="mt-1 text-xs text-gray-500">
               {t.is_published ? "Yayında" : "Taslak"}
             </p>
+                        {isAdmin && <SilButonu id={t.id} tablo="trainings" />}
           </div>
         ))}
       </div>

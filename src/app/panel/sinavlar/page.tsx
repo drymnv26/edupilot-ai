@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import SinavFormu from "@/components/SinavFormu";
+import SilButonu from "@/components/SilButonu";
 
 type Sinav = {
   id: string;
@@ -54,7 +55,7 @@ export default async function SinavlarSayfasi() {
         )}
         {exams.map((s) => (
           <div key={s.id} className="rounded-xl bg-white p-4 shadow">
-                        <Link
+            <Link
               href={`/panel/sinavlar/${s.id}`}
               className="font-semibold text-blue-600 underline"
             >
@@ -66,6 +67,7 @@ export default async function SinavlarSayfasi() {
             <p className="mt-1 text-xs text-gray-500">
               {s.is_published ? "Yayında" : "Taslak"}
             </p>
+            {isAdmin && <SilButonu id={s.id} tablo="exams" />}
           </div>
         ))}
       </div>
