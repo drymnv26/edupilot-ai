@@ -24,20 +24,26 @@ export default async function EgitimDetaySayfasi({
   if (!t) {
     notFound();
   }
-
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
-      <Link href="/panel/egitimler" className="text-sm text-blue-600 underline">
-        &larr; E&#287;itimlere d&ouml;n
-      </Link>
-      <article className="space-y-3 rounded-xl bg-white p-6 shadow">
-        <h1 className="text-2xl font-bold text-gray-900">{t.title}</h1>
-        {t.description && <p className="text-gray-600">{t.description}</p>}
-        <hr className="border-gray-200" />
-        <div className="whitespace-pre-wrap text-gray-900">
-          {t.content || "Bu e\u011fitim i\u00e7in i\u00e7erik girilmemi\u015f."}
-        </div>
-      </article>
+    <main className="min-h-screen bg-ink text-ivory">
+      <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
+        <Link
+          href="/panel/egitimler"
+          className="block text-sm text-mist underline underline-offset-4 hover:text-ivory"
+        >
+          &larr; E&#287;itimlere d&ouml;n
+        </Link>
+        <article className="rounded-3xl border border-line bg-surface p-6 sm:p-10">
+          <h1 className="font-display text-4xl sm:text-5xl">{t.title}</h1>
+          {t.description && (
+            <p className="mt-3 text-lg text-mist">{t.description}</p>
+          )}
+          <hr className="my-6 border-line" />
+          <div className="max-w-prose whitespace-pre-wrap text-base leading-8 text-ivory">
+            {t.content || "Bu e\u011fitim i\u00e7in i\u00e7erik girilmemi\u015f."}
+          </div>
+        </article>
+      </div>
     </main>
   );
 }

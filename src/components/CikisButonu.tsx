@@ -16,9 +16,9 @@ export default function CikisButonu() {
   return (
     <button
       onClick={cikisYap}
-      className="mt-4 rounded bg-gray-800 px-4 py-2 font-semibold text-white"
+      className="rounded-full border border-line px-4 py-2 text-sm text-mist transition-colors hover:border-blush hover:text-ivory"
     >
-      Çıkış Yap
+      &Ccedil;&#305;k&#305;&#351; yap
     </button>
   );
 }

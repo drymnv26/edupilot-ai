@@ -10,50 +10,46 @@ export default async function EgitimDuzenleSayfasi({
 }) {
   const { id } = await params;
   const supabase = await createClient();
-
   const {
     data: { user },
   } = await supabase.auth.getUser();
-
   if (!user) {
     redirect("/giris");
   }
-
   const { data: profile } = await supabase
     .from("profiles")
     .select("role")
     .eq("id", user.id)
     .maybeSingle();
-
   if (profile?.role !== "company_admin") {
     redirect("/panel/egitimler");
   }
-
   const { data: training } = await supabase
     .from("trainings")
     .select("id, title, description, content, is_published")
     .eq("id", id)
     .maybeSingle();
-
   if (!training) {
     notFound();
   }
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
-      <div>
+    <main className="min-h-screen bg-ink text-ivory">
+      <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
         <Link
           href="/panel/egitimler"
-          className="text-sm text-blue-600 underline"
-        >&larr; E&#287;itimlere d&ouml;n</Link>
+          className="block text-sm text-mist underline underline-offset-4 hover:text-ivory"
+        >
+          &larr; E&#287;itimlere d&ouml;n
+        </Link>
+        <EgitimDuzenleFormu
+          id={training.id}
+          title={training.title}
+          description={training.description}
+          content={training.content}
+          isPublished={training.is_published}
+        />
       </div>
-      <EgitimDuzenleFormu
-        id={training.id}
-        title={training.title}
-        description={training.description}
-        content={training.content}
-        isPublished={training.is_published}
-      />
     </main>
   );
 }

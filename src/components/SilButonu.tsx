@@ -16,7 +16,11 @@ export default function SilButonu({
   const [siliniyor, setSiliniyor] = useState(false);
 
   async function sil() {
-    if (!window.confirm("Bu kayıt kalıcı olarak silinecek. Emin misin?")) {
+    if (
+      !window.confirm(
+        "Bu kay\u0131t kal\u0131c\u0131 olarak silinecek. Emin misiniz?"
+      )
+    ) {
       return;
     }
     setHata(null);
@@ -36,23 +40,27 @@ export default function SilButonu({
       return;
     }
     if (!data || data.length === 0) {
-      setHata("Silinemedi. Bu işlem için yetkin olmayabilir.");
+      setHata("Silinemedi. Bu i\u015flem i\u00e7in yetkiniz olmayabilir.");
       return;
     }
     router.refresh();
   }
 
   return (
-    <div className="mt-2">
+    <div>
       <button
         type="button"
         onClick={sil}
         disabled={siliniyor}
-        className="rounded border border-red-300 px-3 py-1 text-sm text-red-700 disabled:opacity-50"
+        className="rounded-full border border-red-400/40 px-4 py-1.5 text-sm text-red-300 transition-colors hover:bg-red-950/40 disabled:opacity-50"
       >
         {siliniyor ? "Siliniyor..." : "Sil"}
       </button>
-      {hata && <p className="mt-1 text-sm text-red-600">{hata}</p>}
+      {hata && (
+        <p role="alert" className="mt-2 text-sm text-red-300">
+          {hata}
+        </p>
+      )}
     </div>
   );
 }

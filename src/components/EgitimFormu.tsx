@@ -38,50 +38,66 @@ export default function EgitimFormu() {
     setLoading(false);
     router.refresh();
   }
+  const alan =
+    "mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none";
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3 rounded-xl bg-white p-6 shadow"
+      className="space-y-5 rounded-3xl border border-line bg-surface p-6 sm:p-8"
     >
-      <h2 className="text-lg font-bold text-gray-900">Yeni Eğitim Ekle</h2>
+      <h2 className="font-display text-3xl">Yeni e&#287;itim ekle</h2>
 
-      <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
-        placeholder="Eğitim başlığı"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        required
-      />
-      <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
-        placeholder="Kısa açıklama"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-      <textarea
-        className="h-32 w-full rounded border border-gray-300 p-2 text-gray-900"
-        placeholder="Eğitim içeriği"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <label className="flex items-center gap-2 text-gray-900">
+      <label className="block text-sm text-mist">
+        E&#287;itim ba&#351;l&#305;&#287;&#305;
+        <input
+          className={alan}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+      </label>
+
+      <label className="block text-sm text-mist">
+        K&#305;sa a&ccedil;&#305;klama
+        <input
+          className={alan}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </label>
+
+      <label className="block text-sm text-mist">
+        E&#287;itim i&ccedil;eri&#287;i
+        <textarea
+          className={alan + " h-40"}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+      </label>
+
+      <label className="flex items-center gap-3 text-sm text-ivory">
         <input
           type="checkbox"
+          className="h-4 w-4 accent-blush"
           checked={published}
           onChange={(e) => setPublished(e.target.checked)}
         />
-        Yayında (personel görebilsin)
+        Yay&#305;nda (personel g&ouml;rebilsin)
       </label>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && (
+        <p role="alert" className="text-sm text-red-300">
+          {error}
+        </p>
+      )}
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded bg-blue-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
       >
-        {loading ? "Ekleniyor..." : "Eğitimi Ekle"}
+        {loading ? "Ekleniyor..." : "E\u011fitimi ekle"}
       </button>
     </form>
   );
