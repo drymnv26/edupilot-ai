@@ -9,7 +9,7 @@ export default function SilButonu({
   tablo,
 }: {
   id: string;
-  tablo: "trainings" | "exams";
+  tablo: "trainings" | "exams" | "questions";
 }) {
   const router = useRouter();
   const [hata, setHata] = useState<string | null>(null);

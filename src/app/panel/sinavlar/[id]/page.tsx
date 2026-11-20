@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SilButonu from "@/components/SilButonu";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import SoruFormu from "@/components/SoruFormu";
@@ -83,7 +84,7 @@ export default async function SinavDetaySayfasi({
 
       {isAdmin ? (
         <>
-          <SoruFormu examId={exam.id} nextPosition={questions.length + 1} />
+          <SoruFormu examId={exam.id} nextPosition={Math.max(0, ...questions.map((q) => q.position)) + 1} />
 
           <div className="space-y-3">
             {questions.length === 0 && (
@@ -106,6 +107,7 @@ export default async function SinavDetaySayfasi({
                     </li>
                   ))}
                 </ul>
+                <div className="mt-3"><SilButonu id={q.id} tablo="questions" /></div>
               </div>
             ))}
           </div>
