@@ -100,7 +100,42 @@ export default function AnaSayfa() {
               </p>
             </div>
           </section>
-        </main>
+                  <section className="grid items-center gap-8 border-t border-line py-14 md:grid-cols-2">
+            <div>
+              <h2 className="font-display text-4xl">Tek paket, sade fiyat</h2>
+              <p className="mt-3 max-w-md text-mist">
+                &Ouml;nce 14 g&uuml;n &uuml;cretsiz deneyin. Be&#287;enirseniz &ouml;demeyi
+                havale/EFT ile yapars&#305;n&#305;z. Kay&#305;t i&ccedil;in davet kodu gerekir,
+                kodu destek@guzellikedu.com adresinden alabilirsiniz.
+              </p>
+            </div>
+            <div className="rounded-3xl border border-line bg-surface p-6 sm:p-8">
+              <p className="font-display text-6xl text-blush">
+                750 TL
+                <span className="ml-2 font-sans text-base text-mist">/ ay</span>
+              </p>
+              <ul className="mt-6 space-y-3 text-sm">
+                <li className="flex items-center gap-3">
+                  <span className="text-blush">&#10003;</span>14 g&uuml;n &uuml;cretsiz deneme
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-blush">&#10003;</span>10 personele kadar
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-blush">&#10003;</span>E&#287;itim, s&#305;nav ve rapor &ouml;zellikleri
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-blush">&#10003;</span>Firman&#305;za &ouml;zel renk temas&#305;
+                </li>
+              </ul>
+              <Link
+                href="/kayit"
+                className="mt-8 inline-block rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep"
+              >
+                Denemeyi ba&#351;lat
+              </Link>
+            </div>
+          </section>        </main>
 
         <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line py-8 text-sm text-mist">
           <Link href="/gizlilik" className="transition-colors hover:text-ivory">
