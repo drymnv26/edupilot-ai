@@ -67,7 +67,17 @@ export default async function SinavlarSayfasi() {
             <p className="mt-1 text-xs text-gray-500">
               {s.is_published ? "Yayında" : "Taslak"}
             </p>
-            {isAdmin && <SilButonu id={s.id} tablo="exams" />}
+            {isAdmin && (
+              <div className="flex items-start gap-3">
+                <Link
+                  href={`/panel/sinavlar/${s.id}/duzenle`}
+                  className="mt-2 rounded border border-blue-300 px-3 py-1 text-sm text-blue-700"
+                >
+                  D&uuml;zenle
+                </Link>
+                <SilButonu id={s.id} tablo="exams" />
+              </div>
+            )}
           </div>
         ))}
       </div>

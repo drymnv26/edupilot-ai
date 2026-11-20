@@ -45,9 +45,7 @@ export default async function EgitimDuzenleSayfasi({
         <Link
           href="/panel/egitimler"
           className="text-sm text-blue-600 underline"
-        >
-          ← Eğitimlere dön
-        </Link>
+        >&larr; E&#287;itimlere d&ouml;n</Link>
       </div>
       <EgitimDuzenleFormu
         id={training.id}
