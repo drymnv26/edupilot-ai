@@ -14,8 +14,13 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d0c0a;
+  --foreground: #f5f0e6;
+}
+
+html {
+  background: #0d0c0a;
+  color-scheme: dark;
 }
 
 body {
