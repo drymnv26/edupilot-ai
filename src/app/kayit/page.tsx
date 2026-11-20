@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 export default function KayitSayfasi() {
@@ -111,6 +112,7 @@ export default function KayitSayfasi() {
         >
           {loading ? "Kaydediliyor..." : "Firmayı Oluştur"}
         </button>
+      <p className="text-center text-xs text-gray-500">Kay&#305;t olarak <Link href="/gizlilik" className="underline">Gizlilik ve Ki&#351;isel Veriler</Link> metnini okudu&#287;unuzu kabul edersiniz.</p>
       </form>
     </main>
   );
