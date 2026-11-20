@@ -7,8 +7,8 @@
   --color-line: #37322a;
   --color-ivory: #f5f0e6;
   --color-mist: #a8a194;
-  --color-blush: #d9b45b;
-  --color-blush-deep: #c49a3a;
+  --color-blush: var(--accent);
+  --color-blush-deep: var(--accent-deep);
   --font-sans: var(--font-govde);
   --font-display: var(--font-baslik);
 }
@@ -30,6 +30,26 @@ body {
 }
 
 :focus-visible {
-  outline: 2px solid #d9b45b;
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+:root {
+  --accent: #d9b45b;
+  --accent-deep: #c49a3a;
+}
+[data-theme="gul"] {
+  --accent: #e4a0b4;
+  --accent-deep: #d4849c;
+}
+[data-theme="zumrut"] {
+  --accent: #5fbf9a;
+  --accent-deep: #46a883;
+}
+[data-theme="safir"] {
+  --accent: #6fa8e8;
+  --accent-deep: #528fd6;
+}
+[data-theme="mor"] {
+  --accent: #b79be6;
+  --accent-deep: #9d80d4;
 }

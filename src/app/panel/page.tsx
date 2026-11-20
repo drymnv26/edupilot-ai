@@ -110,7 +110,7 @@ export default async function PanelSayfasi() {
                 : "Ald\u0131\u011f\u0131n\u0131z puanlar\u0131 g\u00f6r\u00fcn."}
             </span>
           </Link>
-        </nav>
+        {yonetici && (<Link href="/panel/gorunum" className={kutu}><span className="font-display text-3xl">G&ouml;r&uuml;n&uuml;m</span><span className="mt-2 block text-sm text-mist">Firman&#305;z&#305;n renk temas&#305;n&#305; se&ccedil;in.</span></Link>)}</nav>
       </div>
     </main>
   );
