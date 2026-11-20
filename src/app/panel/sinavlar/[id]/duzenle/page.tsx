@@ -40,11 +40,11 @@ export default async function SinavDuzenleSayfasi({
   }
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
+    <main className="min-h-screen bg-ink text-ivory"><div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
       <div>
         <Link
           href="/panel/sinavlar"
-          className="text-sm text-blue-600 underline"
+          className="block text-sm text-mist underline underline-offset-4 hover:text-ivory"
         >&larr; S&#305;navlara d&ouml;n</Link>
       </div>
       <SinavDuzenleFormu
@@ -53,6 +53,6 @@ export default async function SinavDuzenleSayfasi({
         passScore={exam.pass_score}
         isPublished={exam.is_published}
       />
-    </main>
+    </div></main>
   );
 }

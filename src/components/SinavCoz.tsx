@@ -66,25 +66,25 @@ export default function SinavCoz({
 
   if (result) {
     return (
-      <div className="space-y-3 rounded-xl bg-white p-6 shadow">
-        <h2 className="text-lg font-bold text-gray-900">Sınav Sonucu</h2>
-        <p className="text-4xl font-bold text-gray-900">{result.score}</p>
+      <div className="space-y-4 rounded-3xl border border-line bg-surface p-6 sm:p-8">
+        <h2 className="font-display text-3xl">Sınav Sonucu</h2>
+        <p className="font-display text-7xl text-blush">{result.score}</p>
         <p
           className={
             result.passed
-              ? "font-semibold text-green-700"
-              : "font-semibold text-red-600"
+              ? "font-semibold text-emerald-300"
+              : "font-semibold text-red-300"
           }
         >
           {result.passed ? "Geçtiniz" : "Kaldınız"} (geçme puanı: {passScore})
         </p>
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-mist">
           {result.total_count} sorudan {result.correct_count} tanesini doğru
           yanıtladınız.
         </p>
         <button
           onClick={tekrarDene}
-          className="rounded bg-blue-600 px-4 py-2 font-semibold text-white"
+          className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep"
         >
           Tekrar Çöz
         </button>
@@ -95,18 +95,18 @@ export default function SinavCoz({
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       {questions.map((q, index) => (
-        <div key={q.id} className="rounded-xl bg-white p-4 shadow">
-          <p className="font-semibold text-gray-900">
+        <div key={q.id} className="rounded-2xl border border-line bg-surface p-5">
+          <p className="font-display text-2xl">
             {index + 1}. {q.question_text}
           </p>
-          <div className="mt-2 space-y-1">
+          <div className="mt-4 space-y-3">
             {q.options.map((opt, i) => (
               <label
                 key={i}
-                className="flex items-center gap-2 text-sm text-gray-800"
+                className="flex cursor-pointer items-center gap-3 text-base text-ivory"
               >
                 <input
-                  type="radio"
+                  type="radio" className="h-4 w-4 accent-blush"
                   name={q.id}
                   checked={answers[q.id] === i}
                   onChange={() =>
@@ -120,12 +120,12 @@ export default function SinavCoz({
         </div>
       ))}
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded bg-blue-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
       >
         {loading ? "Gönderiliyor..." : "Sınavı Bitir"}
       </button>

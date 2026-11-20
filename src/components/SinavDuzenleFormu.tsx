@@ -60,44 +60,44 @@ export default function SinavDuzenleFormu(props: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3 rounded-xl bg-white p-6 shadow"
+      className="space-y-5 rounded-3xl border border-line bg-surface p-6 sm:p-8"
     >
-      <h2 className="text-lg font-bold text-gray-900">Sınavı Düzenle</h2>
+      <h2 className="font-display text-3xl">Sınavı Düzenle</h2>
 
       <input
-        className="w-full rounded border border-gray-300 p-2 text-gray-900"
+        className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none"
         placeholder="Sınav başlığı"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         required
       />
       <div>
-        <label className="text-sm text-gray-700">Geçme puanı (0-100)</label>
+        <label className="block text-sm text-mist">Geçme puanı (0-100)</label>
         <input
           type="number"
           min={0}
           max={100}
-          className="w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none"
           value={passScore}
           onChange={(e) => setPassScore(e.target.value)}
           required
         />
       </div>
-      <label className="flex items-center gap-2 text-gray-900">
+      <label className="flex items-center gap-3 text-sm text-ivory">
         <input
-          type="checkbox"
+          type="checkbox" className="h-4 w-4 accent-blush"
           checked={published}
           onChange={(e) => setPublished(e.target.checked)}
         />
         Yayında (personel görebilsin)
       </label>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded bg-blue-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
       >
         {loading ? "Kaydediliyor..." : "Kaydet"}
       </button>

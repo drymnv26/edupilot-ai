@@ -71,13 +71,13 @@ export default async function SinavDetaySayfasi({
   const harfler = ["A", "B", "C", "D", "E", "F"];
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-6">
+    <main className="min-h-screen bg-ink text-ivory"><div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
       <div>
-        <Link href="/panel/sinavlar" className="text-sm text-blue-600 underline">
+        <Link href="/panel/sinavlar" className="block text-sm text-mist underline underline-offset-4 hover:text-ivory">
           ← Sınavlara dön
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-gray-900">{exam.title}</h1>
-        <p className="text-sm text-gray-600">
+        <h1 className="mt-3 font-display text-5xl">{exam.title}</h1>
+        <p className="mt-2 text-sm text-mist">
           Geçme puanı: {exam.pass_score} ·{" "}
           {exam.is_published ? "Yayında" : "Taslak"} · {questions.length} soru
         </p>
@@ -89,32 +89,32 @@ export default async function SinavDetaySayfasi({
 
           <div className="space-y-3">
             {questions.length === 0 && (
-              <p className="text-gray-600">Bu sınavda henüz soru yok.</p>
+              <p className="text-mist">Bu sınavda henüz soru yok.</p>
             )}
             {questions.map((q, index) => (
-              <div key={q.id} className="rounded-xl bg-white p-4 shadow">
-                <p className="font-semibold text-gray-900">
+              <div key={q.id} className="rounded-2xl border border-line bg-surface p-5">
+                <p className="font-display text-2xl">
                   {index + 1}. {q.question_text}
                 </p>
-                <ul className="mt-2 space-y-1 text-sm text-gray-800">
+                <ul className="mt-3 space-y-1 text-sm text-mist">
                   {q.options.map((opt, i) => (
                     <li key={i}>
                       {harfler[i]}) {opt}
                       {answerMap.get(q.id) === i && (
-                        <span className="ml-2 font-semibold text-green-700">
+                        <span className="ml-2 font-semibold text-emerald-300">
                           ✓ doğru
                         </span>
                       )}
                     </li>
                   ))}
                 </ul>
-                <div className="mt-3 flex flex-wrap items-start gap-2"><SoruDuzenle id={q.id} text={q.question_text} options={q.options} correctIndex={answerMap.get(q.id) ?? 0} /><SilButonu id={q.id} tablo="questions" /></div>
+                <div className="mt-4 flex flex-wrap items-center gap-3"><SoruDuzenle id={q.id} text={q.question_text} options={q.options} correctIndex={answerMap.get(q.id) ?? 0} /><SilButonu id={q.id} tablo="questions" /></div>
               </div>
             ))}
           </div>
         </>
       ) : questions.length === 0 ? (
-        <p className="text-gray-600">Bu sınavda henüz soru yok.</p>
+        <p className="text-mist">Bu sınavda henüz soru yok.</p>
       ) : (
         <SinavCoz
           examId={exam.id}
@@ -122,6 +122,6 @@ export default async function SinavDetaySayfasi({
           questions={questions}
         />
       )}
-    </main>
+    </div></main>
   );
 }

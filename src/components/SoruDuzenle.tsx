@@ -80,7 +80,7 @@ export default function SoruDuzenle({
       <button
         type="button"
         onClick={() => setAcik(true)}
-        className="rounded border border-blue-300 px-2 py-1 text-xs text-blue-600"
+        className="rounded-full border border-line px-4 py-1.5 text-sm text-mist transition-colors hover:border-blush hover:text-ivory"
       >
         D&uuml;zenle
       </button>
@@ -88,28 +88,28 @@ export default function SoruDuzenle({
   }
 
   return (
-    <form onSubmit={kaydet} className="w-full space-y-2 rounded border border-gray-200 p-3">
+    <form onSubmit={kaydet} className="w-full space-y-3 rounded-2xl border border-line bg-ink p-4">
       <textarea
-        className="h-20 w-full rounded border border-gray-300 p-2 text-sm text-gray-900"
+        className="h-20 w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ivory focus:border-blush focus:outline-none"
         value={metin}
         onChange={(e) => setMetin(e.target.value)}
         required
       />
       {sikler.map((s, i) => (
         <div key={i} className="flex items-center gap-2">
-          <span className="w-5 text-sm font-semibold text-gray-700">{HARFLER[i]}</span>
+          <span className="w-5 text-sm font-semibold text-mist">{HARFLER[i]}</span>
           <input
-            className="w-full rounded border border-gray-300 p-2 text-sm text-gray-900"
+            className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ivory focus:border-blush focus:outline-none"
             value={s}
             onChange={(e) => setSik(i, e.target.value)}
             required
           />
         </div>
       ))}
-      <label className="block text-sm text-gray-700">
+      <label className="block text-sm text-mist">
         Do&#287;ru cevap
         <select
-          className="mt-1 w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="mt-2 w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm text-ivory focus:border-blush focus:outline-none"
           value={dogru}
           onChange={(e) => setDogru(e.target.value)}
         >
@@ -120,19 +120,19 @@ export default function SoruDuzenle({
           ))}
         </select>
       </label>
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
       <div className="flex gap-2">
         <button
           type="submit"
           disabled={loading}
-          className="rounded bg-blue-600 px-3 py-1 text-sm font-semibold text-white disabled:opacity-50"
+          className="rounded-full bg-blush px-5 py-1.5 text-sm font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
         >
           {loading ? "Kaydediliyor..." : "Kaydet"}
         </button>
         <button
           type="button"
           onClick={() => setAcik(false)}
-          className="rounded border border-gray-300 px-3 py-1 text-sm text-gray-700"
+          className="rounded-full border border-line px-5 py-1.5 text-sm text-mist transition-colors hover:text-ivory"
         >
           Vazge&ccedil;
         </button>

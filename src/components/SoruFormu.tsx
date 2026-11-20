@@ -76,12 +76,12 @@ export default function SoruFormu({
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-3 rounded-xl bg-white p-6 shadow"
+      className="space-y-5 rounded-3xl border border-line bg-surface p-6 sm:p-8"
     >
-      <h2 className="text-lg font-bold text-gray-900">Yeni Soru Ekle</h2>
+      <h2 className="font-display text-3xl">Yeni Soru Ekle</h2>
 
       <textarea
-        className="h-24 w-full rounded border border-gray-300 p-2 text-gray-900"
+        className="h-24 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none placeholder:text-mist"
         placeholder="Soru metni"
         value={text}
         onChange={(e) => setText(e.target.value)}
@@ -91,7 +91,7 @@ export default function SoruFormu({
       {HARFLER.map((harf, i) => (
         <input
           key={harf}
-          className="w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none placeholder:text-mist"
           placeholder={`${harf} şıkkı`}
           value={options[i]}
           onChange={(e) => setOption(i, e.target.value)}
@@ -99,10 +99,10 @@ export default function SoruFormu({
         />
       ))}
 
-      <label className="block text-sm text-gray-700">
+      <label className="block text-sm text-mist">
         Doğru cevap
         <select
-          className="mt-1 w-full rounded border border-gray-300 p-2 text-gray-900"
+          className="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-base text-ivory focus:border-blush focus:outline-none"
           value={correct}
           onChange={(e) => setCorrect(e.target.value)}
         >
@@ -114,12 +114,12 @@ export default function SoruFormu({
         </select>
       </label>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
+      {error && <p role="alert" className="text-sm text-red-300">{error}</p>}
 
       <button
         type="submit"
         disabled={loading}
-        className="rounded bg-blue-600 px-4 py-2 font-semibold text-white disabled:opacity-50"
+        className="rounded-full bg-blush px-6 py-3 font-semibold text-ink transition-colors hover:bg-blush-deep disabled:opacity-50"
       >
         {loading ? "Ekleniyor..." : "Soruyu Ekle"}
       </button>
