@@ -62,7 +62,17 @@ export default async function EgitimlerSayfasi() {
             <p className="mt-1 text-xs text-gray-500">
               {t.is_published ? "Yayında" : "Taslak"}
             </p>
-                        {isAdmin && <SilButonu id={t.id} tablo="trainings" />}
+                        {isAdmin && (
+              <div className="flex items-start gap-3">
+                <Link
+                  href={`/panel/egitimler/${t.id}/duzenle`}
+                  className="mt-2 rounded border border-blue-300 px-3 py-1 text-sm text-blue-700"
+                >
+                  Düzenle
+                </Link>
+                <SilButonu id={t.id} tablo="trainings" />
+              </div>
+            )}
           </div>
         ))}
       </div>
