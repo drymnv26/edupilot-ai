@@ -10,6 +10,7 @@ export default function KayitSayfasi() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,18 +20,21 @@ export default function KayitSayfasi() {
     setLoading(true);
     const supabase = createClient();
 
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
+    let oturumVar = false;
+    const { data, error: signUpError } = await supabase.auth.signUp({ email, password });
     if (signUpError) {
-      setError(signUpError.message);
-      setLoading(false);
-      return;
+      const giris = await supabase.auth.signInWithPassword({ email, password });
+      if (giris.error) {
+        setError(signUpError.message);
+        setLoading(false);
+        return;
+      }
+      oturumVar = true;
+    } else {
+      oturumVar = !!data.session;
     }
 
-    if (!data.session) {
+    if (!oturumVar) {
       setError(
         "Oturum açılamadı. Supabase'de 'Confirm email' ayarının kapalı olduğundan emin olun."
       );
@@ -41,6 +45,7 @@ export default function KayitSayfasi() {
     const { error: rpcError } = await supabase.rpc("register_company", {
       company_name: companyName,
       admin_name: fullName,
+      invite_code: inviteCode,
     });
 
     if (rpcError) {
@@ -94,6 +99,8 @@ export default function KayitSayfasi() {
           minLength={8}
           required
         />
+
+        <input className="w-full rounded border border-gray-300 p-2 text-gray-900" placeholder="Davet kodu" value={inviteCode} onChange={(e) => setInviteCode(e.target.value)} required />
 
         {error && <p className="text-sm text-red-600">{error}</p>}
 

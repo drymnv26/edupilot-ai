@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getPlatformAdminUser } from "@/lib/platform-admin";
 import AbonelikFormu from "@/components/AbonelikFormu";
+import KodYonetimi from "@/components/KodYonetimi";
 
 type Firma = {
   id: string;
@@ -28,6 +29,12 @@ export default async function YonetimSayfasi() {
 
   const companies = (companyData ?? []) as Firma[];
 
+  const { data: kodData } = await admin
+    .from("invite_codes")
+    .select("id, code, note, is_active, used_at")
+    .order("created_at", { ascending: false });
+  const kodlar = kodData ?? [];
+
   const { data: profileData } = await admin
     .from("profiles")
     .select("company_id");
@@ -47,6 +54,8 @@ export default async function YonetimSayfasi() {
           {companies.length} firma · Abonelikleri buradan yönetin.
         </p>
       </div>
+
+      <KodYonetimi kodlar={kodlar} />
 
       <div className="space-y-4">
         {companies.map((c) => (
